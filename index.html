@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Hunter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="bg-orange-200">
+    <header class="sticky top-0 z-50">
+        <div class="navbar bg-orange-300 ">
+            <div class="flex-1">
+              <a class="btn btn-ghost normal-case text-xl text-black">Select Your Favourite Phone</a>
+            </div>
+            <div class="flex-none gap-2">
+                <div class="form-control">
+                    <div class="input-group">
+                      <input id="phone-value" type="text" placeholder="Search…" class="input input-bordered" />
+                      <button onclick="searchPhone()" class="btn btn-square">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                      </button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto my-10">
+        <section>
+            <div id="phones-container" class="grid grid-cols-4 gap-4">
+                
+            </div>
+            <!-- search not found -->
+            <div id="no-phone" class="alert alert-warning shadow-lg hidden">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <span>Warning: No Phone Found. Please try a new search.</span>
+              </div>
+            </div>
+        </section>
+        <!-- spinner -->
+        <section class="flex justify-center items-center">
+          <div id="loader" class="hidden">
+            <button class="btn loading w-96 h-52">loading</button>
+          </div>
+        </section>
+    </main>
+    <footer class="bg-orange-300 footer footer-center p-4 bg-base-300 text-base-content text-black">
+        <div>
+          <p>Copyright © 2022 - mehediahsan</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
