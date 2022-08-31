@@ -26,15 +26,15 @@ const displayPhone = (phones,dataLimit) => {
         noPhone.classList.add('hidden');
     }
     for (const phone of phones) {
-        console.log(phone)
+        // console.log(phone)
         const phoneDiv = document.createElement('div');
         phoneDiv.classList.add('card', 'card-compact', 'bg-base-100', 'shadow-xl')
         phoneDiv.innerHTML = `
-        <figure><img class="h-64 w-full" src="${phone.image}" alt="Shoes" /></figure>
+        <figure class="bg-white"><img class="h-52 w-40 mt-2" src="${phone.image}" alt="Shoes" /></figure>
         <div class="card-body bg-white text-orange-900">
         <h2 class="card-title">${phone.phone_name}</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur asperiores beatae ea exercitationem obcaecati ab necessitatibus debitis fuga maiores reiciendis.</p>
-        <label onclick="loadPhoneDetails('${phone.slug}')" for="my-modal-4" class="btn modal-button">open modal</label>
+        <div class="flex items-end justify-end"><label onclick="loadPhoneDetails('${phone.slug}')" for="my-modal-4" class="btn modal-button btn-primary">Details</label></div>
         </div>
         `;
         phonesContainer.appendChild(phoneDiv);
@@ -86,13 +86,24 @@ const loadPhoneDetails = async id => {
 
 const displayPhoneDetails = phone => {
     console.log(phone);
+    const {mainFeatures} = phone;
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.innerHTML = `
+    <div class="flex gap-4">
+    <figure class="bg-white w-64"><img class="h-52 w-44 mt-2" src="${phone.image}" alt="Shoes" /></figure>
+    <div class="w-72 border-l-2 border-gray-400 pl-3">
+    <h3 class="text-lg font-bold text-primary">${phone.brand}</h3>
     <h3 class="text-lg font-bold">${phone.name}</h3>
-    <p class="py-1">Release Date: ${phone.releaseDate ? phone.releaseDate : 'No release'}</p>
-    <p class="py-1">Storage: ${phone.mainFeatures ? phone.mainFeatures.storage : 'No storage'}</p>
-    <p class="py-1">Others: ${phone.others ? phone.others.Bluetooth : 'No bluetooth'}</p>
+    <p class="py-1">Memory: ${mainFeatures ? mainFeatures.memory : 'No memory'}</p>
+    <p class="py-1">Storage: ${mainFeatures ? mainFeatures.storage : 'No storage'}</p>
+    <p class="py-1">Display: ${mainFeatures ? mainFeatures.displaySize : 'Not available'}</p>
+    <p class="py-1">Chipset: ${mainFeatures ? mainFeatures.chipSet : 'Not available'}</p>
+    <p class="py-1">Sensor: ${mainFeatures ? mainFeatures.sensors : 'Not available'}</p>
+    <p class="py-1">Bluetooth: ${phone.others ? phone.others.Bluetooth : 'Not available'}</p>
+    <p class="py-1">Release Date: ${phone.releaseDate ? phone.releaseDate : 'No release date'}</p>
+    </div>
+    </div>  
     `
 }
 
-// loadPhone('a')
+loadPhone('a')

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="bg-orange-200">
+<body class="bg-orange-100">
     <header class="sticky top-0 z-50">
-        <div class="navbar bg-orange-300 ">
+        <div class="navbar bg-orange-200 ">
             <div class="flex-1">
-              <a class="btn btn-ghost normal-case text-xl text-black">Select Your Favourite Phone</a>
+              <img class="w-10 h-10" src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/phone-512.png" alt="">
+              <button class="normal-case text-2xl font-bold text-gray-800">Phone Hunter</button>
             </div>
             <div class="flex-none gap-2">
                 <div class="form-control">
@@ -27,12 +28,16 @@
         </div>
     </header>
     <main class="container mx-auto my-10">
+      <section>
+        <h1 class="text-5xl font-bold text-center text-orange-700 mb-10">Our Latest Model
+        </h1>
+      </section>
         <section>
             <div id="phones-container" class="grid grid-cols-4 gap-4">
                 
             </div>
             <!-- search not found -->
-            <div id="no-phone" class="alert alert-warning shadow-lg hidden">
+            <div id="no-phone" class="alert alert-warning hidden">
               <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                 <span>Warning: No Phone Found. Please try a new search.</span>
@@ -46,7 +51,7 @@
         <!-- spinner -->
         <section class="flex justify-center items-center">
           <div id="loader" class="hidden">
-            <button class="btn loading w-96 h-52">loading</button>
+            <button class="btn loading bg-orange-100 text-black border-0">loading</button>
           </div>
         </section>
         <!-- modal -->
@@ -60,7 +65,7 @@
             </label>
         </section>
     </main>
-    <footer class="bg-orange-300 footer footer-center p-4 bg-base-300 text-base-content text-black">
+    <footer class="bg-orange-200 footer footer-center p-4 bg-base-300 text-base-content text-black">
         <div>
           <p>Copyright © 2022 - mehediahsan</p>
         </div>
