@@ -32,8 +32,8 @@ const displayPhone = (phones,dataLimit) => {
         phoneDiv.innerHTML = `
         <figure class="bg-white"><img class="h-52 w-40 mt-2" src="${phone.image}" alt="Shoes" /></figure>
         <div class="card-body bg-white text-orange-900">
+        <h3 class="text-lg font-bold text-primary">${phone.brand}</h3>
         <h2 class="card-title">${phone.phone_name}</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur asperiores beatae ea exercitationem obcaecati ab necessitatibus debitis fuga maiores reiciendis.</p>
         <div class="flex items-end justify-end"><label onclick="loadPhoneDetails('${phone.slug}')" for="my-modal-4" class="btn modal-button btn-primary">Details</label></div>
         </div>
         `;
@@ -94,16 +94,43 @@ const displayPhoneDetails = phone => {
     <div class="w-72 border-l-2 border-gray-400 pl-3">
     <h3 class="text-lg font-bold text-primary">${phone.brand}</h3>
     <h3 class="text-lg font-bold">${phone.name}</h3>
-    <p class="py-1">Memory: ${mainFeatures ? mainFeatures.memory : 'No memory'}</p>
-    <p class="py-1">Storage: ${mainFeatures ? mainFeatures.storage : 'No storage'}</p>
-    <p class="py-1">Display: ${mainFeatures ? mainFeatures.displaySize : 'Not available'}</p>
-    <p class="py-1">Chipset: ${mainFeatures ? mainFeatures.chipSet : 'Not available'}</p>
-    <p class="py-1">Sensor: ${mainFeatures ? mainFeatures.sensors : 'Not available'}</p>
-    <p class="py-1">Bluetooth: ${phone.others ? phone.others.Bluetooth : 'Not available'}</p>
-    <p class="py-1">Release Date: ${phone.releaseDate ? phone.releaseDate : 'No release date'}</p>
+    <div id="main-features">
+    
     </div>
+    <p class="py-1"><span class="text-primary capitalize font-semibold">Release Date:</span> ${phone.releaseDate ? phone.releaseDate : 'No release date'}</p>
+    </div>
+    </div>
+    <div class="overflow-x-auto">
+    <table class="table w-full">
+    <!-- head -->
+    <thead>
+      <h1 class="text-center text-xl font-semibold bg-orange-100 p-2 mt-6">Other Features</h1>
+    </thead>
+    <tbody id="others">
+      
+    </tbody>
+    </table>
     </div>  
     `
+
+    for(const features in mainFeatures){
+        const main = document.getElementById('main-features');
+        const p = document.createElement('p');
+        p.innerHTML = `
+        <span class="text-primary capitalize font-semibold">${features?features:'Not avaiable'}</span> : ${mainFeatures[features]?mainFeatures[features]:'Not available'}
+        ` 
+        main.appendChild(p);
+    }
+
+    for(const i in phone.others){
+        const others= document.getElementById('others');
+        const tr = document.createElement('tr');
+        tr.innerHTML=`
+        <td>${i?i:'Not available'}</td>
+        <td>${phone.others[i]?phone.others[i]:'Not available'}</td>
+        `
+        others.appendChild(tr)
+    }
 }
 
 loadPhone('a')
