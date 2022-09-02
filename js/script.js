@@ -25,22 +25,22 @@ const displayPhone = (phones,dataLimit) => {
     else{
         noPhone.classList.add('hidden');
     }
-    for (const phone of phones) {
-        // console.log(phone)
+    // stop spinner
+    toggleSpinner(false);
+    phones.forEach(phone => {
+        // console.log(phone);
         const phoneDiv = document.createElement('div');
         phoneDiv.classList.add('card', 'card-compact', 'bg-base-100', 'shadow-xl')
         phoneDiv.innerHTML = `
         <figure class="bg-white"><img class="h-52 w-40 mt-2" src="${phone.image}" alt="Shoes" /></figure>
         <div class="card-body bg-white text-orange-900">
         <h3 class="text-lg font-bold text-primary">${phone.brand}</h3>
-        <h2 class="card-title">${phone.phone_name}</h2>
-        <div class="flex items-end justify-end"><label onclick="loadPhoneDetails('${phone.slug}')" for="my-modal-4" class="btn modal-button btn-primary">Details</label></div>
+        <h3 class="font-semibold text-base">${phone.phone_name}</h3>
+        <div class="flex items-end justify-end"><label onclick="loadPhoneDetails('${phone.slug}')" for="my-modal-4" class="btn modal-button btn-primary px-3">Details</label></div>
         </div>
         `;
         phonesContainer.appendChild(phoneDiv);
-    }
-    // stop spinner
-    toggleSpinner(false);
+    }); 
 }
 
 const processSearch = (dataLimit) => {
@@ -74,6 +74,10 @@ const toggleSpinner = isLoading => {
 
 document.getElementById('btn-show-all').addEventListener('click', function(){
     processSearch();
+    const phoneField = document.getElementById('phone-value');
+    phoneField.value = '';
+    // stop spinner
+    toggleSpinner(false);
 })
 
 
@@ -85,7 +89,7 @@ const loadPhoneDetails = async id => {
 }
 
 const displayPhoneDetails = phone => {
-    console.log(phone);
+    // console.log(phone);
     const {mainFeatures} = phone;
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.innerHTML = `
@@ -93,7 +97,7 @@ const displayPhoneDetails = phone => {
     <figure class="bg-white w-64"><img class="h-52 w-44 mt-2" src="${phone.image}" alt="Shoes" /></figure>
     <div class="w-72 border-l-2 border-gray-400 pl-3">
     <h3 class="text-lg font-bold text-primary">${phone.brand}</h3>
-    <h3 class="text-lg font-bold">${phone.name}</h3>
+    <h3 class="font-bold">${phone.name}</h3>
     <div id="main-features">
     
     </div>
